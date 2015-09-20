@@ -1,4 +1,6 @@
-<<<<<<< HEAD
+NOTE: This code is authored by Giovanni Silva giovanni@atende.info and is used here for testing purposes!
+
+
 # Atlassian Confluence
 
 Enterprise colaboration wiki. Confluence is where you create, organize and discuss work with your team.
@@ -91,6 +93,3 @@ You will need to prepare and configure each application before the change, read:
 If you application is alread running, stops, remove and run again with the variables. If you follow the instalation process that separate application data and postgresql you will lose nothing.
 
 This feature was added after the first tags in github, so, if the readme do not contain this instruction only the latest release have it.
-=======
-# confluence
->>>>>>> e75b22611075b3477b37a8cd35ef2307c06dec04
