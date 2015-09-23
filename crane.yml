@@ -24,7 +24,7 @@ containers:
       cmd: ["echo","'confluence data'"]
       detach: true
   confluence:
-    image: inettom/confluence:5.8.8
+    image: inettom/confluence:5.8.10
     run:
       env: ["VIRTUAL_HOST=confluence.mrks.cz","PROXY_SCHEME=https","PROXY_PORT=443","PROXY_SECURED=true"]
       volumes-from: ["confluence_home"]
