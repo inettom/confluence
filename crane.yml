@@ -17,7 +17,7 @@ containers:
       cmd: ["echo","'confluence data test'"]
       detach: true
   confluence-test:
-    image: inettom/confluence:5.8.13-test
+    image: inettom/confluence:5.8.14-test
     run:
       env: ["VIRTUAL_HOST=confluence-test.mrks.cz","PROXY_SCHEME=https","PROXY_PORT=443","PROXY_SECURED=true"]
       volumes-from: ["confluence_home-test"]
