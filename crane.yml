@@ -21,6 +21,6 @@ containers:
     run:
       env: ["VIRTUAL_HOST=confluence-test.mrks.cz","PROXY_SCHEME=https","PROXY_PORT=443","PROXY_SECURED=true"]
       volumes-from: ["confluence_home-test"]
-      publish: ["8091:8090"]
+      publish: ["8090:8090"]
       link: ["postgresql-test:db"]
       detach: true
