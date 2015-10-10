@@ -1,36 +1,26 @@
 containers:
-  pgsql_datastore:
+  pgsql_datastore-test:
     image: busybox
     run:
-      volume: ["/data/mrks-postgres:/data"]
+      volume: ["/data-test/mrks-postgres:/data"]
       cmd: ["echo","'pgsql data'"]
       detach: true
-  postgresql:
+  postgresql-test:
     image: atende/postgresql:9.3
     run:
-      volumes-from: ["pgsql_datastore"]
-      publish: ["5432:5432"]
-      restart: always
+      volumes-from: ["pgsql_datastore-test"]
       detach: true
-  nginx:
-    image: atende/nginx-proxy
-    run:
-      volume: ["/opt/certs:/etc/nginx/certs","/var/run/docker.sock:/tmp/docker.sock"]
-      publish: ["80:80","443:443"]
-      detach: true
-      restart: always
-  confluence_home:
+  confluence_home-test:
     image: busybox
     run:
-      volume: ["/data/mrks-confluence-home:/opt/confluence-home"]
-      cmd: ["echo","'confluence data'"]
+      volume: ["/data-test/mrks-confluence-home:/opt/confluence-home"]
+      cmd: ["echo","'confluence data test'"]
       detach: true
-  confluence:
-    image: inettom/confluence:5.8.13
+  confluence-test:
+    image: inettom/confluence:5.8.13-test
     run:
-      env: ["VIRTUAL_HOST=confluence.mrks.cz","PROXY_SCHEME=https","PROXY_PORT=443","PROXY_SECURED=true"]
-      volumes-from: ["confluence_home"]
-      publish: ["8090:8090"]
-      link: ["postgresql:db"]
-      restart: always
+      env: ["VIRTUAL_HOST=confluence-test.mrks.cz","PROXY_SCHEME=https","PROXY_PORT=443","PROXY_SECURED=true"]
+      volumea-from: ["confluence_home-test"]
+      publish: ["8091:8090"]
+      link: ["postgresql-test:db"]
       detach: true
