@@ -18,10 +18,10 @@ containers:
       volume: ["/data/ldatma-confluence-home:/opt/confluence-home"]
       cmd: ["echo","'confluence data'"]
       detach: true
-  confluence:
+  confluence_ldatma:
     image: inettom/confluence:5.8.15
     run:
-      env: ["VIRTUAL_HOST=cnf.ldatma.net","PROXY_SCHEME=https","PROXY_PORT=443","PROXY_SECURED=true"]
+      env: ["VIRTUAL_HOST=conflunce.ldatma.net","PROXY_SCHEME=https","PROXY_PORT=443","PROXY_SECURED=true"]
       volumes-from: ["confluence_home_ldatma"]
       publish: ["8090:8090"]
       link: ["postgresql_ldatma:db"]
