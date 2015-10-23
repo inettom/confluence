@@ -1,5 +1,5 @@
 containers:
-  pgsql_datastore_ldatma_test:
+  pgsql_datastore:
     image: busybox
     run:
       volume: ["/data/mrks-postgres:/data"]
