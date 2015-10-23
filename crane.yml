@@ -1,36 +1,29 @@
 containers:
-  pgsql_datastore_ldatma_test:
+  pgsql_datastore_ldatma:
     image: busybox
     run:
-      volume: ["/data/mrks-postgres:/data"]
+      volume: ["/data/ldatma-postgres:/data"]
       cmd: ["echo","'pgsql data'"]
       detach: true
-  postgresql:
+  postgresql_ldatma:
     image: atende/postgresql:9.3
     run:
-      volumes-from: ["pgsql_datastore"]
+      volumes-from: ["pgsql_datastore_ldatma"]
       publish: ["5432:5432"]
       restart: always
       detach: true
-  nginx:
-    image: atende/nginx-proxy
-    run:
-      volume: ["/opt/certs:/etc/nginx/certs","/var/run/docker.sock:/tmp/docker.sock"]
-      publish: ["80:80","443:443"]
-      detach: true
-      restart: always
-  confluence_home:
+  confluence_home_ldatma:
     image: busybox
     run:
-      volume: ["/data/mrks-confluence-home:/opt/confluence-home"]
+      volume: ["/data/ldatma-confluence-home:/opt/confluence-home"]
       cmd: ["echo","'confluence data'"]
       detach: true
   confluence:
-    image: inettom/confluence:5.8.14
+    image: inettom/confluence:5.8.15
     run:
-      env: ["VIRTUAL_HOST=confluence.mrks.cz","PROXY_SCHEME=https","PROXY_PORT=443","PROXY_SECURED=true"]
-      volumes-from: ["confluence_home"]
+      env: ["VIRTUAL_HOST=cnf.ldatma.net","PROXY_SCHEME=https","PROXY_PORT=443","PROXY_SECURED=true"]
+      volumes-from: ["confluence_home_ldatma"]
       publish: ["8090:8090"]
-      link: ["postgresql:db"]
+      link: ["postgresql_ldatma:db"]
       restart: always
       detach: true
